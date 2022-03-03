@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <io2d.h>
+#include <assert.h>
 #include "route_model.h"
 #include "render.h"
 #include "route_planner.h"
@@ -59,16 +60,19 @@ int main(int argc, const char **argv)
   	float start_x, start_y, end_x, end_y;
   	std::cout << "Please input the starting x \n";
   	std::cin >> start_x;
+  	assert(start_x >= 0 && start_x <= 100);
   	std::cout << "Please input the starting y \n";
   	std::cin >> start_y;
+  	assert(start_y >= 0 && start_y <= 100);
   	std::cout << "Please input the ending x \n";
   	std::cin >> end_x;
+  	assert(end_x >= 0 && end_x <= 100);
   	std::cout << "Please input the ending y \n";
   	std::cin >> end_y;
+  	assert(end_y >= 0 && end_y <= 100);
 
     // Build Model.
     RouteModel model{osm_data};
-
     // Create RoutePlanner object and perform A* search.
     RoutePlanner route_planner{model, start_x, start_y, end_x, end_y};
     route_planner.AStarSearch();
